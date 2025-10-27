@@ -1,7 +1,188 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nikolaos Voulgaris — Academic Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#121924; --muted:#94a3b8; --text:#e5e7eb; --acc:#60a5fa; --chip:#1f2937;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+    a{color:var(--acc);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max);margin:0 auto;padding:24px}
+    header{display:flex;gap:24px;align-items:flex-start}
+    .sidebar{width:280px;flex:0 0 280px;position:sticky;top:16px}
+    .avatar{width:96px;height:96px;border-radius:50%;background:#222;display:block}
+    .name{font-size:28px;font-weight:700;margin:8px 0 0}
+    .role{font-size:14px;color:var(--muted)}
+    .list{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+    .list li{display:flex;gap:10px;align-items:center}
+    .list li span{font-size:14px;color:var(--muted)}
+    main{flex:1}
+    .grid{display:grid;grid-template-columns:280px 1fr;gap:24px}
+    section{background:var(--card);border:1px solid #1f2937;padding:20px 22px;border-radius:16px;margin-bottom:18px}
+    h2{margin:0 0 12px;font-size:20px}
+    h3{margin:16px 0 8px;font-size:16px}
+    .news li{margin:4px 0}
+    .pill{display:inline-block;background:var(--chip);border:1px solid #2c3848;color:var(--muted);padding:6px 10px;border-radius:999px;font-size:12px;margin:4px 6px 0 0}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width: 920px){
+      .grid{grid-template-columns:1fr}
+      .sidebar{position:static;width:auto}
+      header{flex-direction:column}
+      .two-col{grid-template-columns:1fr}
+    }
+    .small{font-size:13px;color:var(--muted)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+    .dl{margin:0;padding-left:18px}
+    /* --- pixel art helpers --- */
+    .pixel-deco{position:absolute; image-rendering: pixelated; width:48px; height:48px}
+    .deco-top-left{top:-8px; left:-8px}
+    .deco-top-right{top:-8px; right:-8px}
+    .deco-bottom-left{bottom:-8px; left:-8px}
+    .deco-bottom-right{bottom:-8px; right:-8px}
+    .card-wrap{position:relative}
+  </style>
+</head>
 <body>
-<h1>Beyond the Lab Book</h1>
-<p> Github Pages Introduction. </p>
+  <div class="wrap">
+    <div class="grid">
+      <aside class="sidebar">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/0?v=4" alt="Avatar" />
+        <div class="name">Nikolaos Voulgaris</div>
+        <div class="role">Specially Appointed Researcher (R&D Office), The University of Osaka Library ·<br/>Core Facility Center · School of Engineering (Sustainable Energy & Environmental Engineering)</div>
+        <ul class="list">
+          <li>📍 <span>Osaka, Japan</span></li>
+          <li>🆔 <a href="https://orcid.org/0000-0001-8927-1621" target="_blank">ORCID</a> · <a href="https://researchmap.jp/nikolasvoulg" target="_blank">Researchmap</a></li>
+          <li>🔗 <a href="http://www.linkedin.com/in/nikolaos-voulgaris-physicsworld" target="_blank">LinkedIn</a> · <a href="https://github.com/" target="_blank">GitHub</a></li>
+          <li>✉️ <span>Voulgaris.Nikolaos<span class="mono">[at]</span>see.eng.osaka-u.ac.jp</span></li>
+        </ul>
+      </aside>
+
+      <main>
+        <section id="about" class="card-wrap">
+          <img class="pixel-deco deco-top-right" alt="butterfly" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='none'/><rect x='6' y='1' width='1' height='2' fill='%23a78bfa'/><rect x='9' y='1' width='1' height='2' fill='%23a78bfa'/><rect x='4' y='3' width='3' height='3' fill='%23f472b6'/><rect x='9' y='3' width='3' height='3' fill='%23f472b6'/><rect x='7' y='5' width='2' height='2' fill='%23f9a8d4'/><rect x='7' y='7' width='2' height='1' fill='%2394a3b8'/><rect x='6' y='8' width='4' height='1' fill='%2399f6e4'/></svg>'"/>
+          <h2>About Me</h2>
+          <p>I am a researcher at <strong>The University of Osaka</strong>, working across radiation detection and open science. My work spans <em>BNCT</em> (prompt gamma, neutron monitoring), real‑time gamma spectroscopy and dose estimation, and research data management (RDM) for cross‑disciplinary projects. I hold a <strong>Doctor of Philosophy in Engineering</strong> (Jan 2025, The University of Osaka).</p>
+          <p class="small">日本語の履歴・業績は <a href="https://researchmap.jp/nikolasvoulg" target="_blank">Researchmap</a> に掲載しています。</p>
+          <div>
+            <span class="pill">Radiation Detection</span>
+            <span class="pill">BNCT</span>
+            <span class="pill">Gamma Spectroscopy</span>
+            <span class="pill">Cancer Biology (context)</span>
+            <span class="pill">Research Data Management</span>
+            <span class="pill">Mass Spectrometry</span>
+            <span class="pill">Open Science</span>
+          </div>
+        </section>
+
+        <section id="news" class="card-wrap">
+          <img class="pixel-deco deco-bottom-left" alt="flower" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='none'/><rect x='7' y='1' width='2' height='4' fill='%2360a5fa'/><rect x='4' y='4' width='4' height='4' fill='%23facc15'/><rect x='8' y='4' width='4' height='4' fill='%23facc15'/><rect x='6' y='6' width='4' height='4' fill='%23fde047'/><rect x='7' y='10' width='2' height='5' fill='%234ade80'/></svg>'"/>
+          <h2>News</h2>
+          <ul class="news">
+            <li><strong>2025‑09</strong>: Paper accepted in <em>Japanese Journal of Applied Physics</em> on Si/TlBr Compton camera (co‑author).</li>
+            <li><strong>2025‑08</strong>: LC‑MS/MS BPA distribution paper published in <em>Applied Radiation and Isotopes</em> (co‑author).</li>
+            <li><strong>2025‑03–06</strong>: Co‑created <em>Fundamentals of Research Data Management in the Open Science Era</em> educational materials.</li>
+            <li><strong>2025‑01</strong>: Awarded Ph.D. in Engineering, The University of Osaka.</li>
+            <li><strong>2024‑10</strong>: Co‑authored BNCT neutron monitor paper in <em>Radiation Measurements</em>.</li>
+          </ul>
+          <div class="small"><a href="#">Click to view more</a></div>
+        </section>
+
+        <section id="education">
+          <h2>Education</h2>
+          <ul class="dl">
+            <li><strong>Doctor of Philosophy in Engineering</strong>, The University of Osaka — Jan 2025.</li>
+            <li><strong>M.Eng.</strong>, The University of Osaka — Sustainable Energy &amp; Environmental Engineering.</li>
+            <li><strong>B.Eng. (Honours)</strong>, The University of Sydney — Biomedical Engineering.</li>
+          </ul>
+        </section>
+
+        <section id="experience" class="two-col">
+          <div>
+            <h2>Experience</h2>
+            <h3>Main Employment</h3>
+            <ul class="dl">
+              <li>Researcher, Murata Lab, The University of Osaka (2024 – Now)</li>
+            </ul>
+            <h3>Research Roles</h3>
+            <ul class="dl">
+              <li>Joint RDM project &amp; BNCT‑SPECT collaboration (2024 – Now)</li>
+            </ul>
+          </div>
+          <div>
+            <h2>Projects</h2>
+            <ul class="dl">
+              <li><strong>Real‑time Gamma Spectrum &amp; Dose Monitor</strong> — CsI(Tl)+MPPC + Bayesian unfolding up to 10 MeV.</li>
+              <li><strong>BNCT‑SPECT (GAGG)</strong> — Monte Carlo study &amp; reconstruction toward beam experiments.</li>
+              <li><strong>RDM x IIIF/TEI</strong> — Teaching materials &amp; tooling for humanities research data.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="publications">
+          <h2>Selected Publications</h2>
+          <ol class="dl">
+            <li>Qiu J., <strong>Voulgaris N.</strong>, Tamaki S., Kusaka S., Murata I., <em>Comprehensive design study of the Si/TlBr semiconductor‑based Compton camera for 478 keV prompt gamma‑ray imaging in BNCT</em>, <span class="small">Japanese Journal of Applied Physics</span>, Sep 2025.</li>
+            <li>Kusaka S., Miyake Y., Tokumaru Y., <strong>Voulgaris N.</strong>, Murata I., <em>Evaluation of BPA distribution in a rat brain tumor model using LC‑MS/MS</em>, <span class="small">Applied Radiation and Isotopes</span>, Aug 2025.</li>
+            <li>Qiu J., Hatano D., Ge Y., <strong>Voulgaris N.</strong>, et al., <em>Preliminary study of a compact epithermal neutron absolute flux intensity measurement system…</em>, <span class="small">Radiation Measurements</span>, Oct 2024. <span class="small mono">doi:10.1016/j.radmeas.2024.107308</span></li>
+            <li><strong>Voulgaris N.</strong>, Nishimura H., Tamaki S., Kusaka S., Murata I., <em>Balancing Performance and Portability: CsI(Tl) crystal sizes for real‑time gamma spectrum & dose monitoring</em>, <span class="small">Radiation</span>, Jul 2024. <span class="small">Lead & Corresponding author</span></li>
+            <li>Murata I., <strong>Voulgaris N.</strong>, et al., <em>Real‑time gamma‑ray energy spectrum/dose monitor with k‑α method based on sequential Bayesian estimation</em>, <span class="small">Applied Radiation and Isotopes</span>, Jul 2024.</li>
+          </ol>
+          <div class="small">Full list available on <a href="https://researchmap.jp/nikolasvoulg" target="_blank">Researchmap</a>.</div>
+        </section>
+
+        <section id="teaching">
+          <h2>Teaching & Activities</h2>
+          <ul class="dl">
+            <li>ONSA Symposium — Oral contribution, Jan 2024.</li>
+            <li>ISORD 2023 — Poster on real‑time gamma spectrum/dose monitor, Jul 2023.</li>
+            <li>The 19th Congress on Neutron Capture Therapy — BNCT application, Jul 2023.</li>
+            <li>KEK Workshop on Radiation Detectors & Uses — Real‑time convergence study, Jan 2023.</li>
+            <li>YBNCT — Real‑time Gamma‑ray Spectrum and Dose Monitor, Nov 2022.</li>
+          </ul>
+        </section>
+
+        <section id="contact">
+          <h2>Contact</h2>
+          <p>Division of Sustainable Energy and Environmental Engineering, Graduate School of Engineering, The University of Osaka.<br>
+          2‑1 Yamadaoka, Suita, Osaka 565‑0871, Japan.</p>
+          <p class="small">Last updated <span id="updated"></span></p>
+        </section>
+        <section id="awards">
+          <h2>Awards</h2>
+          <ul class="dl">
+            <li>2023 Eight‑University Engineering Consortium “Doctoral Forum” Core Member — Osaka University, Mar 2024.</li>
+            <li>Japanese Government (MEXT) Scholarship — Oct 2021.</li>
+          </ul>
+        </section>
+        <section id="works">
+          <h2>Works</h2>
+          <ul class="dl">
+            <li><em>Fundamentals of Research Data Management in the Open Science Era</em> — Educational materials (Mar–Jun 2025). Co‑authors: Naoto Kai, Tetsuya Nishimori, Hayato Kanzaki, Sachie Tanaka, Rie Hagino, Masako Furukawa, Makiko Sueda, Yuki Ishiyama, Wataru Matsuno, Yasuyuki Minamiyama.</li>
+          </ul>
+        </section>
+        <section id="areas">
+          <h2>Research Areas</h2>
+          <ul class="dl">
+            <li>Energy / Nuclear Engineering</li>
+            <li>Life Sciences / Tumor diagnostics & therapeutics — BNCT</li>
+            <li>Humanities & Social Sciences / Library & Information Science (RDM/Open Science)</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('updated').textContent = new Date().toISOString().slice(0,10);
+  </script>
 </body>
 </html>
