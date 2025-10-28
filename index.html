@@ -10,8 +10,13 @@
   <style>
     :root{
       --bg:#0b0f14; --card:#121924; --muted:#94a3b8; --text:#e5e7eb; --acc:#60a5fa; --chip:#1f2937;
-      --max:1100px;
+      --max:1100px; --border:#1f2937;
     }
+    /* Light theme variables */
+    body[data-theme="light"]{
+      --bg:#f8fafc; --card:#ffffff; --muted:#475569; --text:#0f172a; --acc:#2563eb; --chip:#eef2f7; --border:#e5e7eb;
+    }
+
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
     a{color:var(--acc);text-decoration:none}
@@ -27,11 +32,11 @@
     .list li span{font-size:14px;color:var(--muted)}
     main{flex:1}
     .grid{display:grid;grid-template-columns:280px 1fr;gap:24px}
-    section{background:var(--card);border:1px solid #1f2937;padding:20px 22px;border-radius:16px;margin-bottom:18px}
+    section{background:var(--card);border:1px solid var(--border);padding:20px 22px;border-radius:16px;margin-bottom:18px;position:relative;overflow:hidden}
     h2{margin:0 0 12px;font-size:20px}
     h3{margin:16px 0 8px;font-size:16px}
     .news li{margin:4px 0}
-    .pill{display:inline-block;background:var(--chip);border:1px solid #2c3848;color:var(--muted);padding:6px 10px;border-radius:999px;font-size:12px;margin:4px 6px 0 0}
+    .pill{display:inline-block;background:var(--chip);border:1px solid var(--border);color:var(--muted);padding:6px 10px;border-radius:999px;font-size:12px;margin:4px 6px 0 0}
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     @media (max-width: 920px){
       .grid{grid-template-columns:1fr}
@@ -44,12 +49,22 @@
     .dl{margin:0;padding-left:18px}
 
     /* --- pixel art helpers --- */
-    .pixel-deco{position:absolute; image-rendering: pixelated; width:48px; height:48px}
+    .pixel-deco{position:absolute; image-rendering: pixelated; width:48px; height:48px; opacity:0.9}
     .deco-top-left{top:-8px; left:-8px}
     .deco-top-right{top:-8px; right:-8px}
     .deco-bottom-left{bottom:-8px; left:-8px}
     .deco-bottom-right{bottom:-8px; right:-8px}
     .card-wrap{position:relative}
+
+    /* Theme toggle button */
+    .theme-toggle{
+      margin-top:12px; display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px; border:1px solid var(--border);
+      background:var(--card); color:var(--text); cursor:pointer; font-size:13px;
+    }
+    .theme-toggle:hover{filter:brightness(1.05)}
+    .toolbar{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .note{font-size:12px; color:var(--muted); margin-top:4px}
   </style>
 </head>
 <body>
@@ -65,14 +80,19 @@
           <li>🔗 <a href="http://www.linkedin.com/in/nikolaos-voulgaris-physicsworld" target="_blank">LinkedIn</a> · <a href="https://www.researchgate.net/profile/Nikolaos-Voulgaris?ev=hdr_xprf" target="_blank">ResearchGate</a> · <a href="https://github.com/" target="_blank">GitHub</a></li>
           <li>✉️ <span>voulgaris.nikolaos@qr.see.eng.osaka-u.ac.jp</span></li>
         </ul>
+        <div class="toolbar">
+          <button id="toggle-theme" class="theme-toggle" aria-label="Toggle theme">🌙 Dark</button>
+          <button id="toggle-deco" class="theme-toggle" aria-label="Toggle decorations">🦋 Decorations</button>
+        </div>
+        <div class="note">Tip: Use the buttons to switch light/dark and show/hide pixel flowers &amp; butterflies.</div>
       </aside>
 
       <main>
         <section id="about" class="card-wrap">
-          <img class="pixel-deco deco-top-right" alt="butterfly" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='none'/><rect x='6' y='1' width='1' height='2' fill='%23a78bfa'/><rect x='9' y='1' width='1' height='2' fill='%23a78bfa'/><rect x='4' y='3' width='3' height='3' fill='%23f472b6'/><rect x='9' y='3' width='3' height='3' fill='%23f472b6'/><rect x='7' y='5' width='2' height='2' fill='%23f9a8d4'/><rect x='7' y='7' width='2' height='1' fill='%2394a3b8'/><rect x='6' y='8' width='4' height='1' fill='%2399f6e4'/></svg>'"/>
+          <img class="pixel about-butterfly pixel-deco deco-top-right" alt="butterfly" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='none'/><rect x='6' y='1' width='1' height='2' fill='%23a78bfa'/><rect x='9' y='1' width='1' height='2' fill='%23a78bfa'/><rect x='4' y='3' width='3' height='3' fill='%23f472b6'/><rect x='9' y='3' width='3' height='3' fill='%23f472b6'/><rect x='7' y='5' width='2' height='2' fill='%23f9a8d4'/><rect x='7' y='7' width='2' height='1' fill='%2394a3b8'/><rect x='6' y='8' width='4' height='1' fill='%2399f6e4'/></svg>'"/>
           <h2>About Me</h2>
-          <p>I am a radiation/medical physics researcher at <strong>The University of Osaka</strong> (R&amp;D Office, Library; Core Facility Center; School of Engineering). My work focuses on <strong>gamma‑ray spectroscopy</strong> and <strong>real‑time dosimetry</strong> for therapy environments, especially <strong>BNCT</strong>, together with <strong>research data management</strong> and open‑science infrastructure.</p>
-          <p>My journey so far: Greece → B.Eng.-equivalent studies in Applied Mathematical &amp; Physical Sciences (laser‑induced DNA damage thesis) → UK <em>Master by Research</em> in Cancer Biology &amp; Therapy → Japan as a <em>MEXT Embassy scholar</em> → <strong>Ph.D. in Engineering (Jan 2025, The University of Osaka)</strong>. I currently lead development of a novel <em>gamma spectrum &amp; dose monitor</em> (CsI(Tl)+MPPC, Bayesian unfolding) and collaborate on BNCT drug distribution studies (BPA, LC‑MS/MS), while working of Research Data Management and other topics in the project for promoting Open Science.</p>
+          <p>I am a radiation/medical physics researcher at <strong>The University of Osaka</strong> (R&amp;D Office, Library; Core Facility Center; School of Engineering). My work focuses on <strong>gamma-ray spectroscopy</strong> and <strong>real-time dosimetry</strong> for therapy environments, especially <strong>BNCT</strong>, together with <strong>research data management</strong> and open-science infrastructure.</p>
+          <p>My journey: Greece → B.Eng.-equivalent studies in Applied Mathematical &amp; Physical Sciences (laser-induced DNA damage thesis) → UK <em>Master by Research</em> in Cancer Biology &amp; Therapy → Japan as a <em>MEXT Embassy scholar</em> → <strong>Ph.D. in Engineering (Jan 2025, The University of Osaka)</strong>. I currently lead development of a novel <em>gamma spectrum &amp; dose monitor</em> (CsI(Tl)+MPPC, Bayesian unfolding) and collaborate on BNCT drug distribution studies (BPA, LC-MS/MS) and Compton imaging.</p>
           <p class="small">日本語の履歴・業績は <a href="https://researchmap.jp/nikolasvoulg" target="_blank">Researchmap</a> に掲載しています。</p>
           <div>
             <span class="pill">Radiation Physics</span>
@@ -87,14 +107,14 @@
         </section>
 
         <section id="news" class="card-wrap">
-          <img class="pixel-deco deco-bottom-left" alt="flower" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='none'/><rect x='7' y='1' width='2' height='4' fill='%2360a5fa'/><rect x='4' y='4' width='4' height='4' fill='%23facc15'/><rect x='8' y='4' width='4' height='4' fill='%23facc15'/><rect x='6' y='6' width='4' height='4' fill='%23fde047'/><rect x='7' y='10' width='2' height='5' fill='%234ade80'/></svg>'"/>
+          <img class="pixel news-flower pixel-deco deco-bottom-left" alt="flower" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='none'/><rect x='7' y='1' width='2' height='4' fill='%2360a5fa'/><rect x='4' y='4' width='4' height='4' fill='%23facc15'/><rect x='8' y='4' width='4' height='4' fill='%23facc15'/><rect x='6' y='6' width='4' height='4' fill='%23fde047'/><rect x='7' y='10' width='2' height='5' fill='%234ade80'/></svg>'"/>
           <h2>News</h2>
           <ul class="news">
-            <li><strong>2025.09:</strong> Co‑authored a paper in <em>Japanese Journal of Applied Physics</em> on Si/TlBr Compton camera design.</li>
-            <li><strong>2025.08:</strong> Co‑authored a study on BPA drug distribution in <em>Applied Radiation and Isotopes</em>.</li>
+            <li><strong>2025.09:</strong> Co-authored a paper in <em>Japanese Journal of Applied Physics</em> on Si/TlBr Compton camera design.</li>
+            <li><strong>2025.08:</strong> Co-authored a study on BPA drug distribution in <em>Applied Radiation and Isotopes</em>.</li>
             <li><strong>2025.06:</strong> Published educational materials <em>Fundamentals of Research Data Management in the Open Science Era</em>.</li>
             <li><strong>2025.01:</strong> Awarded Ph.D. in Engineering, The University of Osaka.</li>
-            <li><strong>2024.10:</strong> Co‑authored BNCT neutron monitor paper in <em>Radiation Measurements</em>.</li>
+            <li><strong>2024.10:</strong> Co-authored BNCT neutron monitor paper in <em>Radiation Measurements</em>.</li>
           </ul>
           <div class="small"><a href="#">Click to view more</a></div>
         </section>
@@ -102,14 +122,14 @@
         <section id="education">
           <h2>Education</h2>
           <ul class="dl">
-            <li><strong>Ph.D. in Engineering</strong> — The University of Osaka, Japan (2021–2025).<br><span class="small">Graduate School of Engineering, Sustainable Energy &amp; Environmental Engineering, Nuclear Science &amp; Energy Engineering. Thesis: <em>Development of a Real‑time Gamma‑ray Energy Spectrum and Dose Rate Monitor for Radiation Therapy Facilities</em>.</span></li>
+            <li><strong>Ph.D. in Engineering</strong> — The University of Osaka, Japan (2021–2025).<br><span class="small">Graduate School of Engineering, Sustainable Energy &amp; Environmental Engineering, Nuclear Science &amp; Energy Engineering. Thesis: <em>Development of a Real-time Gamma-ray Energy Spectrum and Dose Rate Monitor for Radiation Therapy Facilities</em>.</span></li>
             <li><strong>M.Res. (Cancer Biology &amp; Therapy)</strong> — University of Central Lancashire, UK (2019–2020).<br><span class="small">Thesis: <em>Quantum and Carbon Dots for Fluorescent Imaging and Cancer Detection</em>.</span></li>
-            <li><strong>Integrated B.Eng./M.Eng.-equivalent</strong> — National Technical University of Athens, Greece (2012–2019).<br><span class="small">School of Applied Mathematical &amp; Physical Sciences (Optoelectronics/Lasers/Advanced Materials). Thesis: <em>Detection of DNA Double‑Strand Breaks due to Ti:Sapphire Laser Irradiation using γ‑H2AX foci</em>.</span></li>
+            <li><strong>Integrated B.Eng./M.Eng.-equivalent</strong> — National Technical University of Athens, Greece (2012–2019).<br><span class="small">School of Applied Mathematical &amp; Physical Sciences (Optoelectronics/Lasers/Advanced Materials). Thesis: <em>Detection of DNA Double-Strand Breaks due to Ti:Sapphire Laser Irradiation using γ-H2AX foci</em>.</span></li>
             <li><strong>Arsakeio High School</strong> — Psychiko, Greece (2010–2012).</li>
           </ul>
-          <h3 class="small" style="margin-top:8px">Post‑doctoral Appointment</h3>
+          <h3 class="small" style="margin-top:8px">Post-doctoral Appointment</h3>
           <ul class="dl">
-            <li><strong>Specially Appointed Researcher (Full‑time)</strong> — The University of Osaka (2025– ). <span class="small">Project: Building a research data ecosystem to promote AI utilization.</span></li>
+            <li><strong>Specially Appointed Researcher (Full-time)</strong> — The University of Osaka (2025– ). <span class="small">Project: Building a research data ecosystem to promote AI utilization.</span></li>
           </ul>
         </section>
 
@@ -123,10 +143,10 @@
             </ul>
             <h3>Projects & Collaborations</h3>
             <ul class="dl">
-              <li>Real‑time gamma spectrum &amp; dose monitor (therapy fields/BNCT); liaison with EMF Japan for prototype commercialization.</li>
-              <li>BNCT‑SPECT collaboration with Nagoya University — Monte Carlo simulation support (2024).</li>
+              <li>Real-time gamma spectrum &amp; dose monitor (therapy fields/BNCT); liaison with EMF Japan for prototype commercialization.</li>
+              <li>BNCT-SPECT collaboration with Nagoya University — Monte Carlo simulation support (2024).</li>
               <li>JAEA project — Ultrasonic visualization for spatial recognition under poor visibility &amp; high radiation (2024).</li>
-              <li>MALDI‑MSI BPA biodistribution in rat brain tumor model; reactor irradiations and analysis support (2022–).</li>
+              <li>MALDI-MSI BPA biodistribution in rat brain tumor model; reactor irradiations and analysis support (2022–).</li>
             </ul>
             <h3>Internship</h3>
             <ul class="dl">
@@ -136,9 +156,9 @@
           <div>
             <h2>Projects</h2>
             <ul class="dl">
-              <li><strong>Real‑time Gamma Monitor</strong> — CsI(Tl)+MPPC, sequential Bayesian unfolding, energy range extended to 10 MeV.</li>
-              <li><strong>BNCT Imaging</strong> — BNCT‑SPECT design &amp; Si/TlBr Compton camera studies; PHITS/MCNP modeling.</li>
-              <li><strong>Research Data Ecosystem</strong> — Open‑science/RDM materials and workflows (IIIF/TEI) across disciplines.</li>
+              <li><strong>Real-time Gamma Monitor</strong> — CsI(Tl)+MPPC, sequential Bayesian unfolding, energy range extended to 10 MeV.</li>
+              <li><strong>BNCT Imaging</strong> — BNCT-SPECT design &amp; Si/TlBr Compton camera studies; PHITS/MCNP modeling.</li>
+              <li><strong>Research Data Ecosystem</strong> — Open-science/RDM materials and workflows (IIIF/TEI) across disciplines.</li>
             </ul>
           </div>
         </section>
@@ -146,23 +166,23 @@
         <section id="publications">
           <h2>Publications</h2>
           <ol class="dl">
-            <li><strong>Voulgaris N.</strong>, Miyoshi T., Tamaki S., Kusaka S., Murata I. <em>Development of Real‑Time Gamma‑Ray Spectrum and Dose Monitor Investigation of True Real‑Time Convergence</em>. Proceedings of the 37th Workshop on Radiation Detectors and their Uses, KEK, Tsukuba, Japan, 2024, pp.30–42. <a href="https://www.i-repository.net/il/meta_pub/G0000128Lib_202325001" target="_blank">Link</a>.</li>
-            <li><strong>Voulgaris N.</strong>, Nishimura H., Tamaki S., Kusaka S., Murata I. <em>Balancing Performance and Portability: A Study on CsI(Tl) Crystal Sizes for Real‑Time Gamma‑Ray Spectrum and Dose Monitoring</em>. <span class="small">Radiation</span> 4(3):213–223, 2024. <span class="small mono">doi:10.3390/radiation4030016</span></li>
-            <li>Murata I., <strong>Voulgaris N.</strong>, Miyoshi T., Shinohara M., Nishimura H., Kobayashi M., Kusaka S., Tamaki S., Sato F. <em>Real‑time gamma‑ray energy spectrum / dose monitor with k‑α method based on sequential Bayesian estimation</em>. <span class="small">Applied Radiation and Isotopes</span> 212, 111454, 2024. <span class="small mono">doi:10.1016/j.apradiso.2024.111454</span></li>
-            <li>Nishimura H., Shinohara M., Miyoshi T., <strong>Voulgaris N.</strong>, Kusaka S., Tamaki S., Sato F., Murata I. <em>Experimental verification of real‑time gamma‑ray energy spectrum and dose monitor</em>. <span class="small">Applied Radiation and Isotopes</span> 185, 110226, 2022. <span class="small mono">doi:10.1016/j.apradiso.2022.110226</span></li>
+            <li><strong>Voulgaris N.</strong>, Miyoshi T., Tamaki S., Kusaka S., Murata I. <em>Development of Real-Time Gamma-Ray Spectrum and Dose Monitor Investigation of True Real-Time Convergence</em>. Proceedings of the 37th Workshop on Radiation Detectors and their Uses, KEK, Tsukuba, Japan, 2024, pp.30–42. <a href="https://www.i-repository.net/il/meta_pub/G0000128Lib_202325001" target="_blank">Link</a>.</li>
+            <li><strong>Voulgaris N.</strong>, Nishimura H., Tamaki S., Kusaka S., Murata I. <em>Balancing Performance and Portability: A Study on CsI(Tl) Crystal Sizes for Real-Time Gamma-Ray Spectrum and Dose Monitoring</em>. <span class="small">Radiation</span> 4(3):213–223, 2024. <span class="small mono">doi:10.3390/radiation4030016</span></li>
+            <li>Murata I., <strong>Voulgaris N.</strong>, Miyoshi T., Shinohara M., Nishimura H., Kobayashi M., Kusaka S., Tamaki S., Sato F. <em>Real-time gamma-ray energy spectrum / dose monitor with k-α method based on sequential Bayesian estimation</em>. <span class="small">Applied Radiation and Isotopes</span> 212, 111454, 2024. <span class="small mono">doi:10.1016/j.apradiso.2024.111454</span></li>
+            <li>Nishimura H., Shinohara M., Miyoshi T., <strong>Voulgaris N.</strong>, Kusaka S., Tamaki S., Sato F., Murata I. <em>Experimental verification of real-time gamma-ray energy spectrum and dose monitor</em>. <span class="small">Applied Radiation and Isotopes</span> 185, 110226, 2022. <span class="small mono">doi:10.1016/j.apradiso.2022.110226</span></li>
             <li>Kusaka S., <strong>Voulgaris N.</strong>, Onishi K., Ueda J., Saito S., Tamaki S., Murata I., Takata T., Suzuki M. <em>Therapeutic Effect of Boron Neutron Capture Therapy on Boronophenylalanine Administration via Cerebrospinal Fluid Circulation in Glioma Rat Models</em>. <span class="small">Cells</span> 13(19), 2024. <span class="small mono">doi:10.3390/cells13191610</span></li>
-            <li>Qiu J., Hatano D., Ge Y., <strong>Voulgaris N.</strong>, Sagara K., Qiao Z., Tamaki S., Kusaka S., Takata T., Murata I. <em>Preliminary study of a compact epithermal neutron absolute flux intensity measurement system for real‑time in‑vivo dose monitoring in boron neutron capture therapy</em>. <span class="small">Radiation Measurements</span> 107308, Oct 2024. <span class="small mono">doi:10.1016/j.radmeas.2024.107308</span></li>
-            <li><strong>Oral Presentations</strong> — Voulgaris N. <em>Development of Real‑time Gamma‑Ray Spectrum and Dose Monitor</em>, Young Researcher’s BNCT Meeting, Nov 2022.</li>
-            <li><strong>Oral Presentations</strong> — Voulgaris N. <em>Investigation of True Real‑time Convergence</em>, 37th Workshop on Radiation Detectors and Their Uses, KEK, Jan 2023.</li>
-            <li><strong>Oral Presentations</strong> — Voulgaris N. <em>Development of a Real‑Time Gamma‑Ray Spectrum and Dose Measurement Device for Medical Settings (Accelerator Facilities)</em>, 32nd Comprehensive Symposium on Radiation Applications, Osaka Nuclear Science Association, Jan 2024. <a href="http://onsa.g.dgdg.jp/sy32-4.pdf" target="_blank">Handout</a>.</li>
-            <li><strong>Poster Presentations</strong> — Voulgaris N., Sumi H., Kusaka S., Tamaki S., Murata I. <em>Experimental verification of real‑time gamma‑ray energy spectrum and dose monitor up to 3&nbsp;MeV gamma‑rays</em>, 11th International Symposium on Radiation Safety and Detection Technology (ISORD‑11), Hanyang University, Jul 2023. <a href="http://isord11.or.kr/file/2023_abstract.pdf" target="_blank">Abstract Book</a>.</li>
-            <li><strong>Poster Presentations</strong> — Voulgaris N., Miyoshi T., Tamaki S., Kusaka S., Murata I. <em>Development of Real‑time Gamma‑Ray Spectrum and Dose Monitor: Investigation of Application in BNCT</em>, The 19th Congress on Neutron Capture Therapy, Yokohama, Jul 2023. <span class="small">Abstract to appear in Therapeutic Radiation and Oncology Journal.</span></li>
+            <li>Qiu J., Hatano D., Ge Y., <strong>Voulgaris N.</strong>, Sagara K., Qiao Z., Tamaki S., Kusaka S., Takata T., Murata I. <em>Preliminary study of a compact epithermal neutron absolute flux intensity measurement system for real-time in-vivo dose monitoring in boron neutron capture therapy</em>. <span class="small">Radiation Measurements</span> 107308, Oct 2024. <span class="small mono">doi:10.1016/j.radmeas.2024.107308</span></li>
+            <li><strong>Oral Presentations</strong> — Voulgaris N. <em>Development of Real-time Gamma-Ray Spectrum and Dose Monitor</em>, Young Researcher’s BNCT Meeting, Nov 2022.</li>
+            <li><strong>Oral Presentations</strong> — Voulgaris N. <em>Investigation of True Real-time Convergence</em>, 37th Workshop on Radiation Detectors and Their Uses, KEK, Jan 2023.</li>
+            <li><strong>Oral Presentations</strong> — Voulgaris N. <em>Development of a Real-Time Gamma-Ray Spectrum and Dose Measurement Device for Medical Settings (Accelerator Facilities)</em>, 32nd Comprehensive Symposium on Radiation Applications, Osaka Nuclear Science Association, Jan 2024. <a href="http://onsa.g.dgdg.jp/sy32-4.pdf" target="_blank">Handout</a>.</li>
+            <li><strong>Poster Presentations</strong> — Voulgaris N., Sumi H., Kusaka S., Tamaki S., Murata I. <em>Experimental verification of real-time gamma-ray energy spectrum and dose monitor up to 3&nbsp;MeV gamma-rays</em>, 11th International Symposium on Radiation Safety and Detection Technology (ISORD-11), Hanyang University, Jul 2023. <a href="http://isord11.or.kr/file/2023_abstract.pdf" target="_blank">Abstract Book</a>.</li>
+            <li><strong>Poster Presentations</strong> — Voulgaris N., Miyoshi T., Tamaki S., Kusaka S., Murata I. <em>Development of Real-time Gamma-Ray Spectrum and Dose Monitor: Investigation of Application in BNCT</em>, The 19th Congress on Neutron Capture Therapy, Yokohama, Jul 2023. <span class="small">Abstract to appear in Therapeutic Radiation and Oncology Journal.</span></li>
           </ol>
           <h3>Theses</h3>
           <ul class="dl">
-            <li><strong>Doctoral Thesis</strong> — “Development of a Real‑time Gamma‑ray Energy Spectrum and Dose Rate Monitor for Radiation Therapy Facilities.” Supervisor: Dr. I.&nbsp;Murata (The University of Osaka, Japan).</li>
+            <li><strong>Doctoral Thesis</strong> — “Development of a Real-time Gamma-ray Energy Spectrum and Dose Rate Monitor for Radiation Therapy Facilities.” Supervisor: Dr. I.&nbsp;Murata (The University of Osaka, Japan).</li>
             <li><strong>Master’s Thesis</strong> — “Quantum and Carbon Dots for Fluorescent Imaging and Cancer Detection.” Supervisor: Dr. M.&nbsp;Krysmann (University of Central Lancashire, UK).</li>
-            <li><strong>Bachelor’s Thesis</strong> — “Detection of DNA Double‑Strand Breaks due to LASER Ti:Sapphire Irradiation using the method γ‑H2AX foci.” Supervisor: Dr.&nbsp;A.&nbsp;Georgakilas (National Technical University of Athens, Greece).</li>
+            <li><strong>Bachelor’s Thesis</strong> — “Detection of DNA Double-Strand Breaks due to LASER Ti:Sapphire Irradiation using the method γ-H2AX foci.” Supervisor: Dr.&nbsp;A.&nbsp;Georgakilas (National Technical University of Athens, Greece).</li>
           </ul>
           <div class="small">Full list and metrics available on <a href="https://researchmap.jp/nikolasvoulg" target="_blank">Researchmap</a> and <a href="https://www.researchgate.net/profile/Nikolaos-Voulgaris?ev=hdr_xprf" target="_blank">ResearchGate</a>.</div>
         </section>
@@ -171,17 +191,17 @@
           <h2>Teaching & Outreach</h2>
           <ul class="dl">
             <li>Teaching Assistant — <em>Quantum Metrology (量子計測)</em> (2022); <em>Science &amp; Technology English II (科学技術英語)</em> (2023–2024).</li>
-            <li>High‑school outreach — Physics experiment demonstrations (2022); public OKTAVIAN facility tours (Icho Festival 2022–2023).</li>
-            <li>Multilingual talks &amp; ad‑hoc JP↔EN interpreting in research settings.</li>
+            <li>High-school outreach — Physics experiment demonstrations (2022); public OKTAVIAN facility tours (Icho Festival 2022–2023).</li>
+            <li>Multilingual talks &amp; ad-hoc JP↔EN interpreting in research settings.</li>
           </ul>
         </section>
 
         <section id="skills">
           <h2>Skills</h2>
           <ul class="dl">
-            <li><strong>Detection &amp; Spectroscopy</strong> — Scintillators (CsI(Tl)), MPPC, DPP/DP5; spectrum unfolding (Bayesian, k‑α).</li>
-            <li><strong>Simulation</strong> — PHITS, MCNP; mixed‑field modeling, source/geometry setup.</li>
-            <li><strong>Lab Techniques</strong> — Gamma spectrometry; HPLC; Mass spectrometry (MS, MALDI‑TOFMS); cell culture; flow cytometry; Western blot.</li>
+            <li><strong>Detection &amp; Spectroscopy</strong> — Scintillators (CsI(Tl)), MPPC, DPP/DP5; spectrum unfolding (Bayesian, k-α).</li>
+            <li><strong>Simulation</strong> — PHITS, MCNP; mixed-field modeling, source/geometry setup.</li>
+            <li><strong>Lab Techniques</strong> — Gamma spectrometry; HPLC; Mass spectrometry (MS, MALDI-TOFMS); cell culture; flow cytometry; Western blot.</li>
             <li><strong>Data &amp; Software</strong> — Python (intermediate), MATLAB, C/C++; OriginLab; SPSS; ImageJ/Fiji; MS Office.</li>
             <li><strong>Languages</strong> — Greek (native), English (C2; IELTS 8.0), Japanese (JLPT N2/C1), German (B1).</li>
           </ul>
@@ -190,7 +210,7 @@
         <section id="awards">
           <h2>Awards</h2>
           <ul class="dl">
-            <li>Eight‑University Engineering Consortium “Doctoral Forum” — Core Member, contribution award (Mar 2024).</li>
+            <li>Eight-University Engineering Consortium “Doctoral Forum” — Core Member, contribution award (Mar 2024).</li>
             <li>Japanese Government (MEXT) Doctoral Research Scholarship — Embassy Recommendation (Oct 2021–Oct 2024).</li>
           </ul>
         </section>
@@ -199,7 +219,7 @@
           <h2>Certifications & Training</h2>
           <ul class="dl">
             <li><em>Introduction to the Biology of Cancer</em> — Johns Hopkins University (2018).</li>
-            <li><em>Full‑speed Python</em> — Educative, Inc. (2022).</li>
+            <li><em>Full-speed Python</em> — Educative, Inc. (2022).</li>
             <li>“11th Seminar on BNCT” (第11回BNCT講習会) — 14 Jul 2023.</li>
             <li>Osaka University Collaborative Radiation Education Program — Completed Mar 2025.</li>
           </ul>
@@ -208,7 +228,7 @@
         <section id="contact">
           <h2>Contact</h2>
           <p>Division of Sustainable Energy and Environmental Engineering, Graduate School of Engineering, The University of Osaka.<br>
-          2‑1 Yamadaoka, Suita, Osaka 565‑0871, Japan.</p>
+          2-1 Yamadaoka, Suita, Osaka 565-0871, Japan.</p>
           <p class="small">Last updated <span id="updated"></span></p>
         </section>
       </main>
@@ -216,6 +236,44 @@
   </div>
 
   <script>
+    // theme init from system or localStorage
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    const initialTheme = savedTheme || (prefersLight ? 'light' : 'dark');
+    document.body.setAttribute('data-theme', initialTheme);
+    const themeBtn = document.getElementById('toggle-theme');
+    function updateThemeButton(){
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+      themeBtn.textContent = isLight ? '☀️ Light' : '🌙 Dark';
+    }
+    updateThemeButton();
+    themeBtn.addEventListener('click', () => {
+      const current = document.body.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.body.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateThemeButton();
+    });
+
+    // decoration toggle
+    const decoBtn = document.getElementById('toggle-deco');
+    function setDecoVisible(v){
+      document.querySelectorAll('.pixel').forEach(el => {
+        el.style.display = v ? 'block' : 'none';
+      });
+    }
+    const savedDeco = localStorage.getItem('deco') ?? 'on';
+    setDecoVisible(savedDeco === 'on');
+    decoBtn.textContent = (savedDeco === 'on') ? '🦋 Decorations' : '🦋 Decorations (off)';
+    decoBtn.addEventListener('click', () => {
+      const anyVisible = (localStorage.getItem('deco') ?? 'on') === 'on';
+      const next = anyVisible ? 'off' : 'on';
+      localStorage.setItem('deco', next);
+      setDecoVisible(next === 'on');
+      decoBtn.textContent = next === 'on' ? '🦋 Decorations' : '🦋 Decorations (off)';
+    });
+
+    // last updated
     document.getElementById('updated').textContent = new Date().toISOString().slice(0,10);
   </script>
 </body>
