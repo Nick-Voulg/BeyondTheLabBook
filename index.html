@@ -55,6 +55,12 @@
     .deco-bottom-left{bottom:-8px; left:-8px}
     .deco-bottom-right{bottom:-8px; right:-8px}
     .card-wrap{position:relative}
+      /* ensure inline SVGs display correctly */
+  .pixel svg {
+    width:48px;
+    height:48px;
+    image-rendering: pixelated;
+  }
 
     /* Theme toggle button */
     .theme-toggle{
@@ -84,13 +90,23 @@
           <button id="toggle-theme" class="theme-toggle" aria-label="Toggle theme">🌙 Dark</button>
           <button id="toggle-deco" class="theme-toggle" aria-label="Toggle decorations">🦋 Decorations</button>
         </div>
-        <div class="note">Tip: Use the buttons to switch light/dark and show/hide pixel flowers &amp; butterflies.</div>
+        <div class="note">Tip: Use the buttons to switch light/dark and show/hide decorations.</div>
       </aside>
 
       <main>
         <section id="about" class="card-wrap">
-          <img class="pixel about-butterfly pixel-deco deco-top-right" alt="butterfly" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='none'/><rect x='6' y='1' width='1' height='2' fill='%23a78bfa'/><rect x='9' y='1' width='1' height='2' fill='%23a78bfa'/><rect x='4' y='3' width='3' height='3' fill='%23f472b6'/><rect x='9' y='3' width='3' height='3' fill='%23f472b6'/><rect x='7' y='5' width='2' height='2' fill='%23f9a8d4'/><rect x='7' y='7' width='2' height='1' fill='%2394a3b8'/><rect x='6' y='8' width='4' height='1' fill='%2399f6e4'/></svg>'"/>
-          <h2>About Me</h2>
+<div class="pixel pixel-deco deco-top-right" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <rect width="16" height="16" fill="none"/>
+    <rect x="6" y="1" width="1" height="2" fill="#a78bfa"/>
+    <rect x="9" y="1" width="1" height="2" fill="#a78bfa"/>
+    <rect x="4" y="3" width="3" height="3" fill="#f472b6"/>
+    <rect x="9" y="3" width="3" height="3" fill="#f472b6"/>
+    <rect x="7" y="5" width="2" height="2" fill="#f9a8d4"/>
+    <rect x="7" y="7" width="2" height="1" fill="#94a3b8"/>
+    <rect x="6" y="8" width="4" height="1" fill="#99f6e4"/>
+  </svg>
+</div>          <h2>About Me</h2>
           <p>I am a radiation/medical physics researcher at <strong>The University of Osaka</strong> (R&amp;D Office, Library; Core Facility Center; School of Engineering). My work focuses on <strong>gamma-ray spectroscopy</strong> and <strong>real-time dosimetry</strong> for therapy environments, especially <strong>BNCT</strong>, together with <strong>research data management</strong> and open-science infrastructure.</p>
           <p>My journey: Greece → B.Eng.-equivalent studies in Applied Mathematical &amp; Physical Sciences (laser-induced DNA damage thesis) → UK <em>Master by Research</em> in Cancer Biology &amp; Therapy → Japan as a <em>MEXT Embassy scholar</em> → <strong>Ph.D. in Engineering (Jan 2025, The University of Osaka)</strong>. I currently lead development of a novel <em>gamma spectrum &amp; dose monitor</em> (CsI(Tl)+MPPC, Bayesian unfolding) and collaborate on BNCT drug distribution studies (BPA, LC-MS/MS) and Compton imaging.</p>
           <p class="small">日本語の履歴・業績は <a href="https://researchmap.jp/nikolasvoulg" target="_blank">Researchmap</a> に掲載しています。</p>
@@ -107,8 +123,16 @@
         </section>
 
         <section id="news" class="card-wrap">
-          <img class="pixel news-flower pixel-deco deco-bottom-left" alt="flower" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='none'/><rect x='7' y='1' width='2' height='4' fill='%2360a5fa'/><rect x='4' y='4' width='4' height='4' fill='%23facc15'/><rect x='8' y='4' width='4' height='4' fill='%23facc15'/><rect x='6' y='6' width='4' height='4' fill='%23fde047'/><rect x='7' y='10' width='2' height='5' fill='%234ade80'/></svg>'"/>
-          <h2>News</h2>
+<div class="pixel pixel-deco deco-bottom-left" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+    <rect width="16" height="16" fill="none"/>
+    <rect x="7" y="1" width="2" height="4" fill="#60a5fa"/>
+    <rect x="4" y="4" width="4" height="4" fill="#facc15"/>
+    <rect x="8" y="4" width="4" height="4" fill="#facc15"/>
+    <rect x="6" y="6" width="4" height="4" fill="#fde047"/>
+    <rect x="7" y="10" width="2" height="5" fill="#4ade80"/>
+  </svg>
+</div>          <h2>News</h2>
           <ul class="news">
             <li><strong>2025.09:</strong> Co-authored a paper in <em>Japanese Journal of Applied Physics</em> on Si/TlBr Compton camera design.</li>
             <li><strong>2025.08:</strong> Co-authored a study on BPA drug distribution in <em>Applied Radiation and Isotopes</em>.</li>
